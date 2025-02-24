@@ -1,4 +1,12 @@
+function eliminarScripts(html) {
+    return html.replace(/<script\b[^<]*>([\s\S]*?)<\/script>/gi, '');
+}
+
 function validar(form) {
+    // Eliminar posibles etiquetas <script> de los valores del formulario
+    form.nombre.value = eliminarScripts(form.nombre.value);
+    form.edad.value = eliminarScripts(form.edad.value);
+    
     // Validar nombre
     var nombre = form.nombre.value.trim();
     if (nombre === "") {
@@ -15,7 +23,7 @@ function validar(form) {
 
     // Validar selección de sexo
     var sexo = form.sexo.value;
-    if (sexo === "") {
+    if (!sexo) {
         alert("Por favor, seleccione su sexo.");
         return false;
     }
