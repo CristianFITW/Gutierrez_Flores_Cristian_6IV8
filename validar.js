@@ -1,9 +1,9 @@
 function validar(form) {
     // Función para verificar símbolos especiales
     function contieneSimbolosInvalidos(valor) {
-        const simbolosInvalidos = ['<', '>', '/', '&', '"', "'", '%', '$', '#', '@', '!', '=', ';', ':'];
+        const simbolosInvalidos = ['<', '>', '/', '&', '"', "'", '%', '$', '#', '@', '!', '=', ';', ':', '\\'];
         for (let simbolo of simbolosInvalidos) {
-            if (valor.includes(simbolo)) {
+            if (valor.indexOf(simbolo) !== -1) {
                 return true;
             }
         }
