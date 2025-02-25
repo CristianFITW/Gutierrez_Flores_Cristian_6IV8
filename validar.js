@@ -1,7 +1,18 @@
 function validar(form) {
+    // Función para verificar símbolos especiales
+    function contieneSimbolosInvalidos(valor) {
+        const simbolosInvalidos = ['<', '>', '/', '&', '"', "'", '%', '$', '#', '@', '!', '=', ';', ':'];
+        for (let simbolo of simbolosInvalidos) {
+            if (valor.includes(simbolo)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     // Validar nombre
     var nombre = form.nombre.value.trim();
-    if (nombre === "" || nombre.includes("<") || nombre.includes(">")) {
+    if (nombre === "" || contieneSimbolosInvalidos(nombre)) {
         alert("Datos inválidos.");
         form.nombre.value = "";  // Borrar el input
         return false;
@@ -9,7 +20,7 @@ function validar(form) {
 
     // Validar edad
     var edad = form.edad.value.trim();
-    if (edad === "" || isNaN(edad) || edad <= 0 || edad.includes("<") || edad.includes(">")) {
+    if (edad === "" || isNaN(edad) || edad <= 0 || contieneSimbolosInvalidos(edad)) {
         alert("Datos inválidos.");
         form.edad.value = "";  // Borrar el input
         return false;
@@ -17,7 +28,7 @@ function validar(form) {
 
     // Validar selección de sexo
     var sexo = form.sexo.value;
-    if (!sexo || sexo.includes("<") || sexo.includes(">")) {
+    if (!sexo || contieneSimbolosInvalidos(sexo)) {
         alert("Datos inválidos.");
         form.sexo.value = "";  // Borrar el input
         return false;
@@ -25,7 +36,7 @@ function validar(form) {
 
     // Validar deporte favorito
     var deporte = form.deporte.value;
-    if (deporte === "ninguno" || deporte.includes("<") || deporte.includes(">")) {
+    if (deporte === "ninguno" || contieneSimbolosInvalidos(deporte)) {
         alert("Datos inválidos.");
         form.deporte.value = "";  // Borrar el input
         return false;
