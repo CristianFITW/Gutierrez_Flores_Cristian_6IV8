@@ -1,5 +1,5 @@
 function eliminarScripts(html) {
-    return html.replace(/<script\b[^<]*>([\s\S]*?)<\/script>/gi, '');
+    return html.replace(/[<>]/gi, '');
 }
 
 function validar(form) {
